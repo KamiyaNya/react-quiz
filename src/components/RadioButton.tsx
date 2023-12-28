@@ -1,6 +1,6 @@
 import { FormLabel, Radio } from '@chakra-ui/react';
 import TooltipBox from './Tooltip';
-import { useState } from 'react';
+
 interface Radio {
 	text: string;
 	tooltipText?: string | undefined;

@@ -1,23 +1,13 @@
-export interface nestedAnswer {
-	text: string;
-	tooltipText: string | undefined;
-	answers: nestedAnswer2[];
-}
-
-interface nestedAnswer2 {
-	title: string;
-	answers: nestedAnswer3[];
-}
-
-interface nestedAnswer3 {
-	text: string;
-}
-
 export interface Questions {
 	title: string;
 	tooltipTitle: string | undefined;
 	tooltipText: string | undefined;
-	answers: nestedAnswer[];
+	answers: any;
+}
+
+export interface AnswersText {
+	text: string;
+	tooltipText?: string;
 }
 
 export const questions: Questions[] = [

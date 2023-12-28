@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Flex, Box, Heading, Divider, RadioGroup, Button } from '@chakra-ui/react';
-import { Questions, nestedAnswer, questions } from './questions';
+import { AnswersText, Questions, questions } from './questions';
 import TooltipBox from './components/Tooltip';
 import RadioButton from './components/RadioButton';
 
@@ -15,7 +15,7 @@ function App() {
 	const nestedQuestions = questions[0].answers[selectedStep];
 
 	const getCurrentAnswerIndex = (): number => {
-		return questions[0].answers.findIndex((answer) => {
+		return questions[0].answers.findIndex((answer: AnswersText) => {
 			return answer.text === currentRadioValue;
 		});
 	};
@@ -23,7 +23,7 @@ function App() {
 	const getCurrentAnswers = (): Questions => {
 		let answers: any = [];
 		if (step <= 1) {
-			answers = questions[0].answers.filter((answer) => {
+			answers = questions[0].answers.filter((answer: AnswersText) => {
 				return answer.text === currentRadioValue;
 			})[0].answers[answerStep];
 		} else {
@@ -38,7 +38,7 @@ function App() {
 		if (step > 1) {
 			setAnswerStep((prev) => prev + 1);
 		}
-		if (step - 2 < nestedQuestions.length) {
+		if (step - 2 < nestedQuestions) {
 			setCurrentStep(getCurrentAnswers());
 			if (step === 1) {
 				setSelectedStep(getCurrentAnswerIndex());
@@ -60,7 +60,7 @@ function App() {
 
 	const changeCurrentRadioValue = (value: string) => {
 		setCurrentRadioValue(
-			currentStep.answers.filter((answer: nestedAnswer): string => {
+			currentStep.answers.filter((answer: AnswersText): string => {
 				return answer.text === value ? answer.text : '';
 			})[0].text
 		);
@@ -148,7 +148,7 @@ function App() {
 								gridTemplateColumns='1fr 1fr'
 								gap='20px'
 								mb='25px'>
-								{currentStep.answers.map((answer: nestedAnswer) => (
+								{currentStep.answers.map((answer: AnswersText) => (
 									<RadioButton
 										key={currentStep.title + answer.text}
 										text={answer.text}
